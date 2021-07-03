@@ -1,0 +1,54 @@
+plugins {
+    id 'java'
+
+    id 'com.github.johnrengelman.shadow' version '5.0.0'
+    id 'net.minecrell.plugin-yml.bukkit' version '0.3.0'
+
+}
+
+group 'org.black_ixx.playerpoints'
+version '1.0.0'
+
+tasks.build.dependsOn('shadowJar')
+
+repositories {
+
+    mavenCentral()
+
+    maven { url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
+    maven { url = 'https://oss.sonatype.org/content/groups/public/' }
+
+    maven { url = 'https://jitpack.io/' }
+
+}
+
+dependencies {
+
+    compileOnly 'org.spigotmc:spigot-api:1.17-R0.1-SNAPSHOT'
+    compileOnly 'com.nextplugins:nextcash:1.1.0'
+
+    def lombok = 'org.projectlombok:lombok:1.18.16'
+    compileOnly lombok
+    annotationProcessor lombok
+
+}
+
+bukkit {
+    name = "PlayerPoints"
+    main = 'org.black_ixx.playerpoints.PlayerPoints'
+    authors = ['NextPlugins']
+    website = 'https://github.com/NextPlugins'
+    version = "${project.version}"
+    depend = ['NextCash']
+}
+
+shadowJar {
+    archiveName("PlayerPoints.jar")
+}
+
+compileJava {
+    options.encoding('UTF-8')
+
+    sourceCompatibility('1.8')
+    targetCompatibility('1.8')
+}
