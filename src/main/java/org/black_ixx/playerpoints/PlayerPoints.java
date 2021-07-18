@@ -13,7 +13,7 @@ public final class PlayerPoints extends JavaPlugin {
     @Override
     public void onEnable() {
 
-        val logger = Logger.getLogger("PlayerPoints-NextBridge");
+        val logger = Logger.getLogger("PlayerPoints (FAKE)");
         logger.info("Plugin iniciado com sucesso");
 
     }

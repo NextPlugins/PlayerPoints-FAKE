@@ -25,7 +25,7 @@ repositories {
 dependencies {
 
     compileOnly 'org.spigotmc:spigot-api:1.17-R0.1-SNAPSHOT'
-    compileOnly 'com.nextplugins:nextcash:1.1.0'
+    compileOnly 'com.github.NextPlugins:NextCash:1.1.0'
 
     def lombok = 'org.projectlombok:lombok:1.18.16'
     compileOnly lombok
@@ -40,10 +40,6 @@ bukkit {
     website = 'https://github.com/NextPlugins'
     version = "${project.version}"
     depend = ['NextCash']
-}
-
-shadowJar {
-    archiveName("PlayerPoints.jar")
 }
 
 compileJava {

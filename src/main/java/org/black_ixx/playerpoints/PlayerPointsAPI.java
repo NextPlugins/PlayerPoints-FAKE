@@ -1,5 +1,6 @@
 package org.black_ixx.playerpoints;
 
+import com.nextplugins.cash.api.NextCashAPI;
 import lombok.val;
 import org.bukkit.Bukkit;
 
@@ -14,6 +15,10 @@ public class PlayerPointsAPI {
     private final NextCashAPI instance;
 
     public PlayerPointsAPI() {
+        this.instance = NextCashAPI.getInstance();
+    }
+
+    public PlayerPointsAPI(PlayerPoints plugin) {
         this.instance = NextCashAPI.getInstance();
     }
 
