@@ -12,10 +12,8 @@ public final class PlayerPoints extends JavaPlugin {
 
     @Override
     public void onEnable() {
-
         val logger = Logger.getLogger("PlayerPoints (FAKE)");
         logger.info("Plugin iniciado com sucesso");
-
     }
 
     public static PlayerPoints getInstance() {

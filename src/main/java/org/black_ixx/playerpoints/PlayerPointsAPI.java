@@ -23,37 +23,32 @@ public class PlayerPointsAPI {
     }
 
     public int look(String name) {
-
         val accountByOwner = instance.findAccountByOwner(name);
         return accountByOwner.map(account -> (int) account.getBalance()).orElse(0);
-
     }
 
     public int look(UUID uuid) {
-
         val accountByOwner = instance.findAccountByOwner(Bukkit.getPlayer(uuid).getName());
         return accountByOwner.map(account -> (int) account.getBalance()).orElse(0);
-
     }
 
     public boolean take(String name, int amount) {
-
         val accountByOwner = instance.findAccountByOwner(name);
         if (!accountByOwner.isPresent() || accountByOwner.get().getBalance() < amount) return false;
 
         accountByOwner.get().withdrawAmount(amount);
         return true;
-
     }
 
     public boolean take(UUID uuid, int amount) {
-
         val accountByOwner = instance.findAccountByOwner(Bukkit.getOfflinePlayer(uuid).getName());
-        if (!accountByOwner.isPresent() || accountByOwner.get().getBalance() < amount) return false;
+        if (!accountByOwner.isPresent()) return false;
+
+        val account = accountByOwner.get();
+        if (account.hasAmount(amount)) return false;
 
         accountByOwner.get().withdrawAmount(amount);
         return true;
-
     }
 
     public boolean give(UUID uuid, int amount) {
@@ -73,10 +68,8 @@ public class PlayerPointsAPI {
     }
 
     public boolean pay(String name, String target, int amount) {
-
         if (!take(name, amount)) return false;
         return give(target, amount);
-
     }
 
     public boolean set(String name, int amount) {
